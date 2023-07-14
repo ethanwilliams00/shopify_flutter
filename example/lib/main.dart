@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shopify_flutter/shopify/src/shopify_page.dart';
 import 'package:shopify_flutter/shopify_flutter.dart';
@@ -61,7 +62,10 @@ class MyHomePageState extends State<MyHomePage> {
                     await ShopifyStore.instance.getMenuByHandle('header');
                 var pages = await ShopifyPage.instance.getAllPages();
                 var products = await ShopifyStore.instance.getAllProducts();
-                print('got menu');
+                if (kDebugMode) {
+                  print(
+                      'got menu: ${menu.toString() + pages.toString() + products.toString()}');
+                }
               },
               child: const Text("Test Query")),
           // IndexedStack(
