@@ -5,7 +5,6 @@ query($handle : String!){
     id
     handle
     title
-    url
     body
     bodySummary
     createdAt

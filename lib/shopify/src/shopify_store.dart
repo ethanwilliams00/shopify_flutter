@@ -6,6 +6,7 @@ import 'package:shopify_flutter/graphql_operations/storefront/queries/get_all_co
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_all_products_from_collection_by_id.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_all_products_on_query.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_collections_by_ids.dart';
+import 'package:shopify_flutter/graphql_operations/storefront/queries/get_menu_by_handle.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_metafileds_from_product.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_product_recommendations.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_products_by_ids.dart';
@@ -16,6 +17,7 @@ import 'package:shopify_flutter/graphql_operations/storefront/queries/get_x_prod
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_x_products_on_query_after_cursor.dart';
 import 'package:shopify_flutter/mixins/src/shopfiy_error.dart';
 import 'package:shopify_flutter/models/src/collection/collections/collections.dart';
+import 'package:shopify_flutter/models/src/menu/menu.dart';
 import 'package:shopify_flutter/models/src/product/metafield/metafield.dart';
 import 'package:shopify_flutter/models/src/product/product.dart';
 import 'package:shopify_flutter/models/src/product/products/products.dart';
@@ -36,6 +38,22 @@ class ShopifyStore with ShopifyError {
 
   GraphQLClient? get _graphQLClient => ShopifyConfig.graphQLClient;
 
+  /// Returns a [Menu]
+  ///
+  /// Simply returns the Menu with this handle from your Store.
+  Future<Menu?> getMenuByHandle(String handle) async {
+    Menu? menu;
+    WatchQueryOptions _options;
+    _options =
+        WatchQueryOptions(document: gql(getMenuByHandleQuery), variables: {
+      'handle': handle,
+    });
+    final QueryResult result = await _graphQLClient!.query(_options);
+    checkForError(result);
+    menu = Menu.fromGraphJson(result.data ?? {});
+    return menu;
+  }
+
   /// Returns a List of [Product].
   ///
   /// Simply returns all Products from your Store.
@@ -51,7 +69,6 @@ class ShopifyStore with ShopifyError {
         document: gql(getProductsQuery),
         variables: {
           'cursor': cursor,
-          'metafieldsNamespace': metafieldsNamespace,
         },
       );
       final QueryResult result = await _graphQLClient!.query(_options);

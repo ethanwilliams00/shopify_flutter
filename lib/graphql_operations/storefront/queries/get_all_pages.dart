@@ -7,7 +7,6 @@ query pages($reversePages: Boolean, $sortKey: PageSortKeys, $pagesQuery: String)
         id
         handle
         title
-        url
         body
         bodySummary
         createdAt

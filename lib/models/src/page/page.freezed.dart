@@ -27,7 +27,6 @@ mixin _$Page {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,8 +45,7 @@ abstract class $PageCopyWith<$Res> {
       String handle,
       String id,
       String title,
-      DateTime updatedAt,
-      String url});
+      DateTime updatedAt});
 }
 
 /// @nodoc
@@ -70,7 +68,6 @@ class _$PageCopyWithImpl<$Res, $Val extends Page>
     Object? id = null,
     Object? title = null,
     Object? updatedAt = null,
-    Object? url = null,
   }) {
     return _then(_value.copyWith(
       body: null == body
@@ -101,10 +98,6 @@ class _$PageCopyWithImpl<$Res, $Val extends Page>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -122,8 +115,7 @@ abstract class _$$_PageCopyWith<$Res> implements $PageCopyWith<$Res> {
       String handle,
       String id,
       String title,
-      DateTime updatedAt,
-      String url});
+      DateTime updatedAt});
 }
 
 /// @nodoc
@@ -142,7 +134,6 @@ class __$$_PageCopyWithImpl<$Res> extends _$PageCopyWithImpl<$Res, _$_Page>
     Object? id = null,
     Object? title = null,
     Object? updatedAt = null,
-    Object? url = null,
   }) {
     return _then(_$_Page(
       body: null == body
@@ -173,10 +164,6 @@ class __$$_PageCopyWithImpl<$Res> extends _$PageCopyWithImpl<$Res, _$_Page>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -191,8 +178,7 @@ class _$_Page extends _Page {
       required this.handle,
       required this.id,
       required this.title,
-      required this.updatedAt,
-      required this.url})
+      required this.updatedAt})
       : super._();
 
   factory _$_Page.fromJson(Map<String, dynamic> json) => _$$_PageFromJson(json);
@@ -211,12 +197,10 @@ class _$_Page extends _Page {
   final String title;
   @override
   final DateTime updatedAt;
-  @override
-  final String url;
 
   @override
   String toString() {
-    return 'Page(body: $body, bodySummary: $bodySummary, createdAt: $createdAt, handle: $handle, id: $id, title: $title, updatedAt: $updatedAt, url: $url)';
+    return 'Page(body: $body, bodySummary: $bodySummary, createdAt: $createdAt, handle: $handle, id: $id, title: $title, updatedAt: $updatedAt)';
   }
 
   @override
@@ -233,14 +217,13 @@ class _$_Page extends _Page {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.url, url) || other.url == url));
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, body, bodySummary, createdAt,
-      handle, id, title, updatedAt, url);
+  int get hashCode => Object.hash(
+      runtimeType, body, bodySummary, createdAt, handle, id, title, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -264,8 +247,7 @@ abstract class _Page extends Page {
       required final String handle,
       required final String id,
       required final String title,
-      required final DateTime updatedAt,
-      required final String url}) = _$_Page;
+      required final DateTime updatedAt}) = _$_Page;
   _Page._() : super._();
 
   factory _Page.fromJson(Map<String, dynamic> json) = _$_Page.fromJson;
@@ -284,8 +266,6 @@ abstract class _Page extends Page {
   String get title;
   @override
   DateTime get updatedAt;
-  @override
-  String get url;
   @override
   @JsonKey(ignore: true)
   _$$_PageCopyWith<_$_Page> get copyWith => throw _privateConstructorUsedError;

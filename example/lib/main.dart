@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopify_flutter/shopify/src/shopify_page.dart';
 import 'package:shopify_flutter/shopify_flutter.dart';
 
 import 'screens/collection_tab.dart';
@@ -8,9 +9,9 @@ import 'screens/search_tab.dart';
 
 void main() {
   ShopifyConfig.setConfig(
-    storefrontAccessToken: '*******************',
+    storefrontAccessToken: "9a35a255b9ce8d7f4a178ebef627bde8",
     adminAccessToken: "shpat_*******************",
-    storeUrl: '*****.myshopify.com',
+    storeUrl: 'inergysolar.myshopify.com',
     storefrontApiVersion: '2023-07',
   );
   runApp(const MyApp());
@@ -49,9 +50,25 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: tabs,
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 50,
+          ),
+          ElevatedButton(
+              onPressed: () async {
+                var menu =
+                    await ShopifyStore.instance.getMenuByHandle('header');
+                var pages = await ShopifyPage.instance.getAllPages();
+                var products = await ShopifyStore.instance.getAllProducts();
+                print('got menu');
+              },
+              child: const Text("Test Query")),
+          // IndexedStack(
+          //   index: _currentIndex,
+          //   children: tabs,
+          // ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
