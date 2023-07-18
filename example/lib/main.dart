@@ -40,6 +40,7 @@ class MyHomePage extends StatefulWidget {
 
 class MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
+  String str = "";
 
   List<Widget> tabs = [
     const HomeTab(),
@@ -58,16 +59,24 @@ class MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
               onPressed: () async {
-                var menu =
-                    await ShopifyStore.instance.getMenuByHandle('header');
-                var pages = await ShopifyPage.instance.getAllPages();
-                var products = await ShopifyStore.instance.getAllProducts();
-                if (kDebugMode) {
-                  print(
-                      'got menu: ${menu.toString() + pages.toString() + products.toString()}');
-                }
+                // var menu =
+                //     await ShopifyStore.instance.getMenuByHandle('header');
+                // var pages = await ShopifyPage.instance.getAllPages();
+                // var products = await ShopifyStore.instance.getAllProducts();
+                // if (kDebugMode) {
+                //   print(
+                //       'got menu: ${menu.toString() + pages.toString() + products.toString()}');
+                // }
+                var collections =
+                    await ShopifyStore.instance.getAllCollections();
+                var products = await ShopifyStore.instance
+                    .getAllProductsFromCollectionById(collections[2].id);
+                setState(() {
+                  str = products[0].description!;
+                });
               },
               child: const Text("Test Query")),
+          Text(str),
           // IndexedStack(
           //   index: _currentIndex,
           //   children: tabs,

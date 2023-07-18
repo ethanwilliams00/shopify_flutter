@@ -5,6 +5,7 @@ import 'package:shopify_flutter/enums/src/sort_key_collection.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_all_collections_optimized.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_all_products_from_collection_by_id.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_all_products_on_query.dart';
+import 'package:shopify_flutter/graphql_operations/storefront/queries/get_collection_by_id.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_collections_by_ids.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_menu_by_handle.dart';
 import 'package:shopify_flutter/graphql_operations/storefront/queries/get_metafileds_from_product.dart';
@@ -238,11 +239,10 @@ class ShopifyStore with ShopifyError {
   /// Returns a collection by id.
   Future<Collection?> getCollectionById(String collectionId) async {
     try {
-      final WatchQueryOptions _options = WatchQueryOptions(
-          document: gql(getCollectionsByIdsQuery),
-          variables: {
-            'ids': [collectionId],
-          });
+      final WatchQueryOptions _options =
+          WatchQueryOptions(document: gql(getCollectionByIdQuery), variables: {
+        'id': collectionId,
+      });
       final QueryResult result = await _graphQLClient!.query(_options);
       checkForError(result);
       return Collection.fromGraphJson(result.data!);
