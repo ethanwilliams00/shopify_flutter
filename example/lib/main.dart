@@ -1,12 +1,16 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shopify_flutter/shopify/src/shopify_page.dart';
+import 'package:shopify_flutter/models/src/cart/buyer_identity.dart';
+import 'package:shopify_flutter/models/src/cart/cart.dart';
+import 'package:shopify_flutter/models/src/cart/cart_cost.dart';
+import 'package:shopify_flutter/models/src/product/price_v_2/price_v_2.dart';
 import 'package:shopify_flutter/shopify_flutter.dart';
 
 import 'screens/collection_tab.dart';
 import 'screens/home_tab.dart';
 import 'screens/profile_tab.dart';
 import 'screens/search_tab.dart';
+
+ShopifyUser? user;
 
 void main() {
   ShopifyConfig.setConfig(
@@ -15,6 +19,12 @@ void main() {
     storeUrl: 'inergysolar.myshopify.com',
     storefrontApiVersion: '2023-07',
   );
+  ShopifyAuth.instance
+      .signInWithEmailAndPassword(
+        email: 'joshua.pachner@inergysolar.com',
+        password: 'weloveethan',
+      )
+      .then((value) => user = value);
   runApp(const MyApp());
 }
 
@@ -71,8 +81,44 @@ class MyHomePageState extends State<MyHomePage> {
                     await ShopifyStore.instance.getAllCollections();
                 var products = await ShopifyStore.instance
                     .getAllProductsFromCollectionById(collections[2].id);
+                var cart = await ShopifyCart.instance.createCart(Cart(
+                    buyerIdentity: BuyerIdentity(
+                      countryCode: "",
+                      customer: user!,
+                      deliveryAddressPreferences: [],
+                      email: user!.email!,
+                      phone: '',
+                      walletPreferences: [],
+                    ),
+                    checkoutUrl: "",
+                    cost: CartCost(
+                        checkoutChargeAmount:
+                            PriceV2(amount: 0, currencyCode: "\$"),
+                        subtotalAmount: PriceV2(amount: 0, currencyCode: "\$"),
+                        subtotalAmountEstimated: false,
+                        totalAmount: PriceV2(amount: 0, currencyCode: "\$"),
+                        totalAmountEstimated: false,
+                        totalDutyAmount: PriceV2(amount: 0, currencyCode: "\$"),
+                        totalDutyAmountEstimated: false,
+                        totalTaxAmount: PriceV2(amount: 0, currencyCode: "\$"),
+                        totalTaxAmountEstimated: false),
+                    createdAt: DateTime.now(),
+                    discountAllocations: [],
+                    discountCodes: [],
+                    id: "",
+                    note: "",
+                    totalQuantity: 1,
+                    updatedAt: DateTime.now(),
+                    lines: [
+                      LineItem(
+                          title: products[0].title,
+                          quantity: 1,
+                          discountAllocations: [],
+                          variantId: products[0].productVariants[0].id)
+                    ]));
                 setState(() {
                   str = products[0].description!;
+                  str = cart.checkoutUrl;
                 });
               },
               child: const Text("Test Query")),
