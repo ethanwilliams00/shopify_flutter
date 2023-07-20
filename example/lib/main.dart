@@ -81,41 +81,43 @@ class MyHomePageState extends State<MyHomePage> {
                     await ShopifyStore.instance.getAllCollections();
                 var products = await ShopifyStore.instance
                     .getAllProductsFromCollectionById(collections[2].id);
-                var cart = await ShopifyCart.instance.createCart(Cart(
-                    buyerIdentity: BuyerIdentity(
-                      countryCode: "",
-                      customer: user!,
-                      deliveryAddressPreferences: [],
-                      email: user!.email!,
-                      phone: '',
-                      walletPreferences: [],
-                    ),
-                    checkoutUrl: "",
-                    cost: CartCost(
-                        checkoutChargeAmount:
-                            PriceV2(amount: 0, currencyCode: "\$"),
-                        subtotalAmount: PriceV2(amount: 0, currencyCode: "\$"),
-                        subtotalAmountEstimated: false,
-                        totalAmount: PriceV2(amount: 0, currencyCode: "\$"),
-                        totalAmountEstimated: false,
-                        totalDutyAmount: PriceV2(amount: 0, currencyCode: "\$"),
-                        totalDutyAmountEstimated: false,
-                        totalTaxAmount: PriceV2(amount: 0, currencyCode: "\$"),
-                        totalTaxAmountEstimated: false),
-                    createdAt: DateTime.now(),
-                    discountAllocations: [],
-                    discountCodes: [],
-                    id: "",
-                    note: "",
-                    totalQuantity: 1,
-                    updatedAt: DateTime.now(),
-                    lines: [
-                      LineItem(
-                          title: products[0].title,
-                          quantity: 1,
-                          discountAllocations: [],
-                          variantId: products[0].productVariants[0].id)
-                    ]));
+                // var cart = await ShopifyCart.instance.createCart(Cart(
+                //     buyerIdentity: BuyerIdentity(
+                //       countryCode: "",
+                //       customer: user!,
+                //       deliveryAddressPreferences: [],
+                //       email: user!.email!,
+                //       phone: '6198864659',
+                //       walletPreferences: [],
+                //     ),
+                //     checkoutUrl: "",
+                //     cost: CartCost(
+                //         checkoutChargeAmount:
+                //             PriceV2(amount: 0, currencyCode: "\$"),
+                //         subtotalAmount: PriceV2(amount: 0, currencyCode: "\$"),
+                //         subtotalAmountEstimated: false,
+                //         totalAmount: PriceV2(amount: 0, currencyCode: "\$"),
+                //         totalAmountEstimated: false,
+                //         totalDutyAmount: PriceV2(amount: 0, currencyCode: "\$"),
+                //         totalDutyAmountEstimated: false,
+                //         totalTaxAmount: PriceV2(amount: 0, currencyCode: "\$"),
+                //         totalTaxAmountEstimated: false),
+                //     createdAt: DateTime.now(),
+                //     discountAllocations: [],
+                //     discountCodes: [],
+                //     id: "",
+                //     note: "",
+                //     totalQuantity: 1,
+                //     updatedAt: DateTime.now(),
+                //     lines: [
+                //       LineItem(
+                //           title: products[0].title,
+                //           quantity: 1,
+                //           discountAllocations: [],
+                //           variantId: products[0].productVariants[0].id)
+                //     ]));
+                var cart = await ShopifyCart.instance.getCartById(
+                    "gid://shopify/Cart/c1-084226e99d200433b578fbc7d5afc6cc");
                 setState(() {
                   str = products[0].description!;
                   str = cart.checkoutUrl;

@@ -32,30 +32,28 @@ class Cart {
 
   static Cart fromGraphJson(Map<String, dynamic> json) {
     List<DiscountAllocations> discountAllocations = [];
-    for (var item in (json['node'] ??
-        {'discountAllocations': []})['discountAllocations']) {
+    for (var item in json['discountAllocations']) {
       discountAllocations.add(DiscountAllocations.fromJson(item));
     }
     List<DiscountCode> discountCodes = [];
-    for (var item in (json['node'] ?? {'discountCodes': []})['discountCodes']) {
+    for (var item in json['discountCodes']) {
       discountCodes.add(DiscountCode.fromGraphJson(item));
     }
     List<LineItem> lines = [];
-    for (var item in (json['node'] ?? {'lines': []})['lines']) {
-      lines.add(LineItem.fromJson(item));
+    for (var item in json['lines']['edges']) {
+      lines.add(LineItem.fromJson(item['node']));
     }
     return Cart(
-      buyerIdentity: BuyerIdentity.fromGraphJson(
-          (json['node'] ?? {'buyerIdentity': {}})['buyerIdentity']),
-      checkoutUrl: (json['node'] ?? {})['checkoutUrl'] ?? "",
-      cost: CartCost.fromGraphJson((json['node'] ?? {})['cost']),
-      createdAt: (json['node'] ?? {})['createdAt'],
+      buyerIdentity: BuyerIdentity.fromGraphJson(json['buyerIdentity']),
+      checkoutUrl: json['checkoutUrl'] ?? "",
+      cost: CartCost.fromGraphJson(json['cost']),
+      createdAt: DateTime.parse(json['createdAt']),
       discountAllocations: discountAllocations,
       discountCodes: discountCodes,
-      id: (json['node'] ?? {})['id'] ?? "",
-      note: (json['node'] ?? {})['note'] ?? "",
-      totalQuantity: (json['node'] ?? {})['totalQuantity'] ?? 0,
-      updatedAt: (json['node'] ?? {})['updatedAt'],
+      id: json['id'] ?? "",
+      note: json['note'] ?? "",
+      totalQuantity: json['totalQuantity'] ?? 0,
+      updatedAt: DateTime.parse(json['updatedAt']),
       lines: lines,
     );
   }

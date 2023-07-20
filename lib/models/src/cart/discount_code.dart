@@ -6,8 +6,8 @@ class DiscountCode {
 
   static DiscountCode fromGraphJson(Map<String, dynamic> json) {
     return DiscountCode(
-      applicable: (json['node'] ?? {})['applicable'] ?? false,
-      code: (json['node'] ?? {})['code'] ?? "",
+      applicable: json['applicable'] ?? false,
+      code: json['code'] ?? "",
     );
   }
 }

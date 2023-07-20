@@ -20,7 +20,6 @@ LineItem _$LineItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LineItem {
-  String get title => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   List<DiscountAllocations> get discountAllocations =>
       throw _privateConstructorUsedError;
@@ -41,8 +40,7 @@ abstract class $LineItemCopyWith<$Res> {
       _$LineItemCopyWithImpl<$Res, LineItem>;
   @useResult
   $Res call(
-      {String title,
-      int quantity,
+      {int quantity,
       List<DiscountAllocations> discountAllocations,
       List<Attribute> customAttributes,
       String? variantId,
@@ -65,7 +63,6 @@ class _$LineItemCopyWithImpl<$Res, $Val extends LineItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
     Object? quantity = null,
     Object? discountAllocations = null,
     Object? customAttributes = null,
@@ -74,10 +71,6 @@ class _$LineItemCopyWithImpl<$Res, $Val extends LineItem>
     Object? variant = freezed,
   }) {
     return _then(_value.copyWith(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -126,8 +119,7 @@ abstract class _$$_LineItemCopyWith<$Res> implements $LineItemCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String title,
-      int quantity,
+      {int quantity,
       List<DiscountAllocations> discountAllocations,
       List<Attribute> customAttributes,
       String? variantId,
@@ -149,7 +141,6 @@ class __$$_LineItemCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
     Object? quantity = null,
     Object? discountAllocations = null,
     Object? customAttributes = null,
@@ -158,10 +149,6 @@ class __$$_LineItemCopyWithImpl<$Res>
     Object? variant = freezed,
   }) {
     return _then(_$_LineItem(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -194,8 +181,7 @@ class __$$_LineItemCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_LineItem extends _LineItem {
   _$_LineItem(
-      {required this.title,
-      required this.quantity,
+      {required this.quantity,
       required final List<DiscountAllocations> discountAllocations,
       final List<Attribute> customAttributes = const [],
       this.variantId,
@@ -208,8 +194,6 @@ class _$_LineItem extends _LineItem {
   factory _$_LineItem.fromJson(Map<String, dynamic> json) =>
       _$$_LineItemFromJson(json);
 
-  @override
-  final String title;
   @override
   final int quantity;
   final List<DiscountAllocations> _discountAllocations;
@@ -240,7 +224,7 @@ class _$_LineItem extends _LineItem {
 
   @override
   String toString() {
-    return 'LineItem(title: $title, quantity: $quantity, discountAllocations: $discountAllocations, customAttributes: $customAttributes, variantId: $variantId, id: $id, variant: $variant)';
+    return 'LineItem(quantity: $quantity, discountAllocations: $discountAllocations, customAttributes: $customAttributes, variantId: $variantId, id: $id, variant: $variant)';
   }
 
   @override
@@ -248,7 +232,6 @@ class _$_LineItem extends _LineItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LineItem &&
-            (identical(other.title, title) || other.title == title) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
             const DeepCollectionEquality()
@@ -265,7 +248,6 @@ class _$_LineItem extends _LineItem {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      title,
       quantity,
       const DeepCollectionEquality().hash(_discountAllocations),
       const DeepCollectionEquality().hash(_customAttributes),
@@ -289,8 +271,7 @@ class _$_LineItem extends _LineItem {
 
 abstract class _LineItem extends LineItem {
   factory _LineItem(
-      {required final String title,
-      required final int quantity,
+      {required final int quantity,
       required final List<DiscountAllocations> discountAllocations,
       final List<Attribute> customAttributes,
       final String? variantId,
@@ -300,8 +281,6 @@ abstract class _LineItem extends LineItem {
 
   factory _LineItem.fromJson(Map<String, dynamic> json) = _$_LineItem.fromJson;
 
-  @override
-  String get title;
   @override
   int get quantity;
   @override

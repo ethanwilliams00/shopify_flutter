@@ -22,8 +22,9 @@ class ShopifyCart with ShopifyError {
     final WatchQueryOptions watchQueryOptions = WatchQueryOptions(
         document: gql(getCartQuery), variables: {'id': cartId});
     QueryResult result = await _graphQLClient!.query(watchQueryOptions);
+    print(result.data!['cart']);
     checkForError(result);
-    return Cart.fromGraphJson(result.data!);
+    return Cart.fromGraphJson(result.data!['cart']);
   }
 
   /// Returns a [Cart] object
@@ -67,8 +68,9 @@ class ShopifyCart with ShopifyError {
       }
     });
     final QueryResult result = await _graphQLClient!.mutate(mutationOptions);
+    print(result.data);
     checkForError(result);
-    return Cart.fromGraphJson(result.data!);
+    return Cart.fromGraphJson(result.data!['cartCreate']['cart']);
   }
 
   /// Returns a [Cart] object

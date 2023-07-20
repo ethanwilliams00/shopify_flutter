@@ -10,7 +10,6 @@ part 'line_item.g.dart';
 class LineItem with _$LineItem {
   const LineItem._();
   factory LineItem({
-    required String title,
     required int quantity,
     required List<DiscountAllocations> discountAllocations,
     @Default([]) List<Attribute> customAttributes,
@@ -28,7 +27,6 @@ class LineItem with _$LineItem {
       variant: nodeJson['variant'] != null
           ? ProductVariantCheckout.fromJson(nodeJson['variant'])
           : null,
-      title: nodeJson['title'],
       discountAllocations: nodeJson['discountAllocations'] == null
           ? []
           : (nodeJson['discountAllocations'] as List)

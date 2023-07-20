@@ -19,21 +19,19 @@ class BuyerIdentity {
 
   static BuyerIdentity fromGraphJson(Map<String, dynamic> json) {
     List<MailingAddress> deliveryAddressPreferences = [];
-    for (var item in (json['node'] ??
-        {'deliveryAddressPreferences': []})['deliveryAddressPreferences']) {
+    for (var item in json['deliveryAddressPreferences']) {
       deliveryAddressPreferences.add(MailingAddress.fromJson(item));
     }
     List<String> walletPreferences = [];
-    for (var item
-        in (json['node'] ?? {'walletPreferences': []})['walletPreferences']) {
+    for (var item in json['walletPreferences']) {
       walletPreferences.add(item);
     }
     return BuyerIdentity(
-      countryCode: (json['node'] ?? {})['countryCode'] ?? "",
-      customer: ShopifyUser.fromJson((json['node'] ?? {})['customer']),
+      countryCode: json['countryCode'] ?? "",
+      customer: ShopifyUser.fromJson(json['customer'] ?? {}),
       deliveryAddressPreferences: deliveryAddressPreferences,
-      email: (json['node'] ?? {})['email'] ?? "",
-      phone: (json['node'] ?? {})['phone'] ?? "",
+      email: json['email'] ?? "",
+      phone: json['phone'] ?? "",
       walletPreferences: walletPreferences,
     );
   }

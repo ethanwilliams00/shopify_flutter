@@ -7,7 +7,6 @@ part of 'line_item.dart';
 // **************************************************************************
 
 _$_LineItem _$$_LineItemFromJson(Map<String, dynamic> json) => _$_LineItem(
-      title: json['title'] as String,
       quantity: json['quantity'] as int,
       discountAllocations: (json['discountAllocations'] as List<dynamic>)
           .map((e) => DiscountAllocations.fromJson(e as Map<String, dynamic>))
@@ -26,7 +25,6 @@ _$_LineItem _$$_LineItemFromJson(Map<String, dynamic> json) => _$_LineItem(
 
 Map<String, dynamic> _$$_LineItemToJson(_$_LineItem instance) =>
     <String, dynamic>{
-      'title': instance.title,
       'quantity': instance.quantity,
       'discountAllocations': instance.discountAllocations,
       'customAttributes': instance.customAttributes,
