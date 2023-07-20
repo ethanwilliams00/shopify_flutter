@@ -1,7 +1,7 @@
 /// Mutation to add line to cart
 const String cartAddLineMutation = r'''
-mutation cartLinesAdd($lineItems: [CartLineInput!]!, $cartId: ID!) {
-  cartLinesAdd(lineItems: $lineItems, cartId: $cartId) {
+mutation cartLinesAdd($lines: [CartLineInput!]!, $cartId: ID!) {
+  cartLinesAdd(lines: $lines, cartId: $cartId) {
     userErrors {
       field
       message

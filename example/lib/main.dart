@@ -118,6 +118,24 @@ class MyHomePageState extends State<MyHomePage> {
                 //     ]));
                 var cart = await ShopifyCart.instance.getCartById(
                     "gid://shopify/Cart/c1-084226e99d200433b578fbc7d5afc6cc");
+                cart = await ShopifyCart.instance.changeCartLineQuantity(
+                    "gid://shopify/Cart/c1-084226e99d200433b578fbc7d5afc6cc",
+                    LineItem(
+                      quantity: cart.lines.first.quantity + 1,
+                      id: cart.lines.first.id,
+                      discountAllocations: [],
+                    ));
+                cart = await ShopifyCart.instance.addCartLineToCart(
+                    "gid://shopify/Cart/c1-084226e99d200433b578fbc7d5afc6cc",
+                    LineItem(
+                        quantity: 1,
+                        discountAllocations: [],
+                        variantId: products[1].productVariants[0].id));
+                cart = await ShopifyCart.instance.removeCartLineFromCart(
+                    "gid://shopify/Cart/c1-084226e99d200433b578fbc7d5afc6cc",
+                    cart.lines.firstWhere((element) =>
+                        element.variantId ==
+                        products[1].productVariants[0].id));
                 setState(() {
                   str = products[0].description!;
                   str = cart.checkoutUrl;

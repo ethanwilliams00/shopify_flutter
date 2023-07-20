@@ -80,18 +80,17 @@ class ShopifyCart with ShopifyError {
     final MutationOptions mutationOptions =
         MutationOptions(document: gql(cartAddLineMutation), variables: {
       "cartId": cartId,
-      "input": {
-        "lines": [
-          {
-            "quantity": line.quantity,
-            "merchandiseId": line.variantId,
-          }
-        ]
-      }
+      "lines": [
+        {
+          "quantity": line.quantity,
+          "merchandiseId": line.variantId,
+        }
+      ]
     });
     final QueryResult result = await _graphQLClient!.mutate(mutationOptions);
+    print(result.data);
     checkForError(result);
-    return Cart.fromGraphJson(result.data!);
+    return Cart.fromGraphJson(result.data!['cartLinesAdd']['cart']);
   }
 
   /// Returns a [Cart] object
@@ -104,8 +103,9 @@ class ShopifyCart with ShopifyError {
       "lineIds": [line.id]
     });
     final QueryResult result = await _graphQLClient!.mutate(mutationOptions);
+    print(result.data);
     checkForError(result);
-    return Cart.fromGraphJson(result.data!);
+    return Cart.fromGraphJson(result.data!['cartLinesRemove']['cart']);
   }
 
   /// Returns a [Cart] object
@@ -115,15 +115,14 @@ class ShopifyCart with ShopifyError {
     final MutationOptions mutationOptions =
         MutationOptions(document: gql(cartChangeQuantityMutation), variables: {
       "cartId": cartId,
-      "input": {
-        "lines": {
-          "id": line.id,
-          "quantity": line.quantity,
-        }
+      "lines": {
+        "id": line.id,
+        "quantity": line.quantity,
       }
     });
     final QueryResult result = await _graphQLClient!.mutate(mutationOptions);
+    print(result.data);
     checkForError(result);
-    return Cart.fromGraphJson(result.data!);
+    return Cart.fromGraphJson(result.data!['cartLinesUpdate']['cart']);
   }
 }
