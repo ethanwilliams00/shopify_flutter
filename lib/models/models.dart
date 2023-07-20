@@ -8,3 +8,7 @@ export 'src/blog/blog.dart';
 export 'src/shop/shop.dart';
 export 'src/checkout/line_item/line_item.dart';
 export 'src/checkout/attribute/attribute.dart';
+export 'src/cart/cart.dart';
+export 'src/cart/buyer_identity.dart';
+export 'src/cart/cart_cost.dart';
+export 'src/cart/discount_code.dart';
