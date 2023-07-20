@@ -23,6 +23,17 @@ class ProductVariantCheckout with _$ProductVariantCheckout {
     @Default(0) int quantityAvailable,
   }) = _ProductVariantCheckout;
 
+  static ProductVariantCheckout fromGraphJson(Map<String, dynamic> json) {
+    return ProductVariantCheckout(
+        priceV2: PriceV2.fromJson(json['priceV2']),
+        title: json['title'],
+        availableForSale: json['availableForSale'],
+        sku: json['sku'],
+        requiresShipping: json['requiresShipping'],
+        id: json['id'],
+        image: ShopifyImage.fromGraphJson(json['image']));
+  }
+
   factory ProductVariantCheckout.fromJson(Map<String, dynamic> json) =>
       _$ProductVariantCheckoutFromJson(json);
 }

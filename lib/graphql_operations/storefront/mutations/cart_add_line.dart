@@ -118,6 +118,11 @@ mutation cartLinesAdd($lineItems: [CartLineInput!]!, $cartId: ID!) {
                 requiresShipping
                 sku
                 title
+                priceV2 {
+                  amount
+                  currencyCode
+                }
+                availableForSale
               }
             }
             quantity

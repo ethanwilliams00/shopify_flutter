@@ -22,7 +22,7 @@ class ShopifyCart with ShopifyError {
     final WatchQueryOptions watchQueryOptions = WatchQueryOptions(
         document: gql(getCartQuery), variables: {'id': cartId});
     QueryResult result = await _graphQLClient!.query(watchQueryOptions);
-    print(result.data!['cart']);
+    print(result.data!['cart']['lines']);
     checkForError(result);
     return Cart.fromGraphJson(result.data!['cart']);
   }

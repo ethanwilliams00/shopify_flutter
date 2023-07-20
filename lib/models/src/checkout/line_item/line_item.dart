@@ -38,6 +38,24 @@ class LineItem with _$LineItem {
     );
   }
 
+  static LineItem fromCartJson(Map<String, dynamic> json) {
+    return LineItem(
+      quantity: json['quantity'],
+      discountAllocations: json['discountAllocations'] == null
+          ? []
+          : (json['discountAllocations'] as List)
+              .map((e) => DiscountAllocations.fromJson(e))
+              .toList(),
+      id: json['id'],
+      variant: json['merchandise'] != null
+          ? ProductVariantCheckout.fromGraphJson(json['merchandise'])
+          : null,
+      variantId: json['merchandise'] != null
+          ? ProductVariantCheckout.fromGraphJson(json['merchandise']).id
+          : null,
+    );
+  }
+
   factory LineItem.fromJson(Map<String, dynamic> json) =>
       _$LineItemFromJson(json);
 }

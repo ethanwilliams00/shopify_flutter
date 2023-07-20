@@ -118,6 +118,11 @@ mutation cartCreate($input: CartInput!) {
                 requiresShipping
                 sku
                 title
+                priceV2 {
+                  amount
+                  currencyCode
+                }
+                availableForSale
               }
             }
             quantity

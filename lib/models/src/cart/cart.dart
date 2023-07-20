@@ -41,7 +41,7 @@ class Cart {
     }
     List<LineItem> lines = [];
     for (var item in json['lines']['edges']) {
-      lines.add(LineItem.fromJson(item['node']));
+      lines.add(LineItem.fromCartJson(item['node']));
     }
     return Cart(
       buyerIdentity: BuyerIdentity.fromGraphJson(json['buyerIdentity']),
