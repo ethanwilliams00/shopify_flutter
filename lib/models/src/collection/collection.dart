@@ -27,9 +27,12 @@ class Collection with _$Collection {
       : image!.originalSrc;
 
   static Collection fromGraphJson(Map<String, dynamic> json) {
-    Map<String, dynamic> nodeJson = json['node'] ?? const {};
-    if (json.containsKey('nodes')) {
-      nodeJson = json['nodes'][0] ?? const {};
+    Map<String, dynamic> nodeJson = json;
+    if (json['node'] != null) {
+      nodeJson = json['node'] ?? const {};
+      if (json.containsKey('nodes')) {
+        nodeJson = json['nodes'][0] ?? const {};
+      }
     }
 
     var _products = Products.fromGraphJson(nodeJson['products'] ?? const {});
@@ -59,8 +62,7 @@ class Collection with _$Collection {
       id: nodeJson['id'],
       updatedAt: nodeJson['updatedAt'],
       image: nodeJson['image'] != null
-          ? ShopifyImage.fromJson(
-              (json['node'] ?? const {})['image'] ?? const {})
+          ? ShopifyImage.fromJson(nodeJson['image'])
           : null,
       products: _products,
       cursor: json['cursor'],

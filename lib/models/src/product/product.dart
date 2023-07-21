@@ -83,7 +83,8 @@ class Product with _$Product {
         collectionList: _getCollectionList(json),
         id: (json['node'] ?? const {})['id'] ?? '',
         title: (json['node'] ?? const {})['title'] ?? '',
-        availableForSale: (json['node'] ?? const {})['availableForSale'],
+        availableForSale:
+            (json['node'] ?? const {})['availableForSale'] ?? true,
         createdAt: (json['node'] ?? const {})['createdAt'],
         description: (json['node'] ?? const {})['description'] ?? '',
         productVariants: _getProductVariants(json),

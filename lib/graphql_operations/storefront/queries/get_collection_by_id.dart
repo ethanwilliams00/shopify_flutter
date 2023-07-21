@@ -43,6 +43,7 @@ query getCollectionById($id: ID!) {
                 }
                 availableForSale
                 quantityAvailable
+                id
               }
             }
           }

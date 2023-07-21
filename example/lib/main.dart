@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shopify_flutter/models/src/cart/buyer_identity.dart';
-import 'package:shopify_flutter/models/src/cart/cart.dart';
-import 'package:shopify_flutter/models/src/cart/cart_cost.dart';
-import 'package:shopify_flutter/models/src/product/price_v_2/price_v_2.dart';
 import 'package:shopify_flutter/shopify_flutter.dart';
 
 import 'screens/collection_tab.dart';
@@ -82,8 +78,14 @@ class MyHomePageState extends State<MyHomePage> {
                 // }
                 var collections =
                     await ShopifyStore.instance.getAllCollections();
+                var collection = await ShopifyStore.instance
+                    .getCollectionById(collections[2].id);
+                print("collection: ${collection?.handle}");
                 var products = await ShopifyStore.instance
                     .getAllProductsFromCollectionById(collections[2].id);
+                var product = await ShopifyStore.instance
+                    .getProductsByIds([products[0].id]);
+                print("product: ${product?[0].handle}");
                 // var cart = await ShopifyCart.instance.createCart(Cart(
                 //     buyerIdentity: BuyerIdentity(
                 //       countryCode: "",
