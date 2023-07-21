@@ -1,25 +1,30 @@
 import 'package:shopify_flutter/models/src/menu/menu_item.dart';
 
 class Menu {
+  String handle;
+  String id;
+  List<MenuItem> items;
+  int itemsCount;
+  String title;
   Menu({
-    required String handle,
-    required String id,
-    required List<MenuItem> items,
-    required int itemsCount,
-    required String title,
+    required this.handle,
+    required this.id,
+    required this.items,
+    required this.itemsCount,
+    required this.title,
   });
 
   static Menu fromGraphJson(Map<String, dynamic> json) {
     List<MenuItem> menuItems = [];
-    for (var item in (json['node'] ?? {'items': []})['items']) {
+    for (var item in json['items']) {
       menuItems.add(MenuItem.fromGraphJson(item));
     }
     return Menu(
-      handle: (json['node'] ?? {'handle': ''})['handle'],
-      id: (json['node'] ?? {'id': ''})['id'],
+      handle: json['handle'],
+      id: json['id'],
       items: menuItems,
-      itemsCount: (json['node'] ?? {'itemCount': 0})['itemsCount'] ?? 0,
-      title: (json['node'] ?? {'title': ''})['title'],
+      itemsCount: json['itemsCount'] ?? 0,
+      title: json['title'],
     );
   }
 }

@@ -50,8 +50,9 @@ class ShopifyStore with ShopifyError {
       'handle': handle,
     });
     final QueryResult result = await _graphQLClient!.query(_options);
+    print(result.data);
     checkForError(result);
-    menu = Menu.fromGraphJson(result.data ?? {});
+    menu = Menu.fromGraphJson(result.data!['menu']);
     return menu;
   }
 

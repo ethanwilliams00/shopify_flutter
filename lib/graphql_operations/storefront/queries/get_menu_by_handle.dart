@@ -1,6 +1,6 @@
 /// Query to get menu by handle
 const String getMenuByHandleQuery = r'''
-query($handle : String!) {
+query getMenuByHandle($handle : String!) {
   menu(handle: $handle) {
     handle
     id

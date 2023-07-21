@@ -69,8 +69,8 @@ class MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
               onPressed: () async {
-                // var menu =
-                //     await ShopifyStore.instance.getMenuByHandle('header');
+                var menu =
+                    await ShopifyStore.instance.getMenuByHandle('main-menu');
                 // var pages = await ShopifyPage.instance.getAllPages();
                 // var products = await ShopifyStore.instance.getAllProducts();
                 // if (kDebugMode) {
@@ -137,6 +137,7 @@ class MyHomePageState extends State<MyHomePage> {
                         element.variantId ==
                         products[1].productVariants[0].id));
                 setState(() {
+                  str = menu!.items.length.toString();
                   str = products[0].description!;
                   str = cart.checkoutUrl;
                 });
