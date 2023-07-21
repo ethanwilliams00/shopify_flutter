@@ -85,7 +85,7 @@ class Product with _$Product {
         title: (json['node'] ?? const {})['title'] ?? '',
         availableForSale:
             (json['node'] ?? const {})['availableForSale'] ?? true,
-        createdAt: (json['node'] ?? const {})['createdAt'],
+        createdAt: (json['node'] ?? const {})['createdAt'] ?? '',
         description: (json['node'] ?? const {})['description'] ?? '',
         productVariants: _getProductVariants(json),
         descriptionHtml: (json['node'] ?? const {})['descriptionHtml'] ?? '',
@@ -94,11 +94,11 @@ class Product with _$Product {
         productType: (json['node'] ?? const {})['productType'] ?? '',
         publishedAt: (json['node'] ?? const {})['publishedAt'],
         tags: _getTags(json),
-        updatedAt: (json['node'] ?? const {})['updatedAt'],
+        updatedAt: (json['node'] ?? const {})['updatedAt'] ?? '',
         images: _getImageList((json['node'] ?? const {})['images'] ?? const {}),
         cursor: json['cursor'],
         option: _getOptionList((json['node'] ?? const {})),
-        vendor: (json['node'] ?? const {})['vendor'],
+        vendor: (json['node'] ?? const {})['vendor'] ?? '',
         metafields: _getMetafieldList(
             (json['node'] ?? const {})['metafields'] ?? const {}));
   }
