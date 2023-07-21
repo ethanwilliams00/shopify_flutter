@@ -12,3 +12,5 @@ export 'src/cart/cart.dart';
 export 'src/cart/buyer_identity.dart';
 export 'src/cart/cart_cost.dart';
 export 'src/cart/discount_code.dart';
+export 'src/menu/menu.dart';
+export 'src/menu/menu_item.dart';
