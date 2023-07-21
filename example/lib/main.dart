@@ -71,7 +71,10 @@ class MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 var menu =
                     await ShopifyStore.instance.getMenuByHandle('main-menu');
-                // var pages = await ShopifyPage.instance.getAllPages();
+                var pages = (await ShopifyPage.instance.getAllPages())!;
+                for (var page in pages) {
+                  print("Page name: ${page.title}");
+                }
                 // var products = await ShopifyStore.instance.getAllProducts();
                 // if (kDebugMode) {
                 //   print(

@@ -14,3 +14,4 @@ export 'src/cart/cart_cost.dart';
 export 'src/cart/discount_code.dart';
 export 'src/menu/menu.dart';
 export 'src/menu/menu_item.dart';
+export 'src/page/page.dart';
