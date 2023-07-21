@@ -65,12 +65,12 @@ class MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
               onPressed: () async {
-                var menu =
-                    await ShopifyStore.instance.getMenuByHandle('main-menu');
-                var pages = (await ShopifyPage.instance.getAllPages())!;
-                for (var page in pages) {
-                  print("Page name: ${page.title}");
-                }
+                // var menu =
+                //     await ShopifyStore.instance.getMenuByHandle('main-menu');
+                // var pages = (await ShopifyPage.instance.getAllPages())!;
+                // for (var page in pages) {
+                //   print("Page name: ${page.title}");
+                // }
                 // var products = await ShopifyStore.instance.getAllProducts();
                 // if (kDebugMode) {
                 //   print(
@@ -78,14 +78,12 @@ class MyHomePageState extends State<MyHomePage> {
                 // }
                 var collections =
                     await ShopifyStore.instance.getAllCollections();
-                var collection = await ShopifyStore.instance
-                    .getCollectionById(collections[2].id);
-                print("collection: ${collection?.handle}");
+                // var collection = await ShopifyStore.instance
+                //     .getCollectionById(collections[2].id);
                 var products = await ShopifyStore.instance
                     .getAllProductsFromCollectionById(collections[2].id);
-                var product = await ShopifyStore.instance
-                    .getProductsByIds([products[0].id]);
-                print("product: ${product?[0].handle}");
+                // var product = await ShopifyStore.instance
+                //     .getProductsByIds([products[0].id]);
                 // var cart = await ShopifyCart.instance.createCart(Cart(
                 //     buyerIdentity: BuyerIdentity(
                 //       countryCode: "",
@@ -142,7 +140,7 @@ class MyHomePageState extends State<MyHomePage> {
                         element.variantId ==
                         products[1].productVariants[0].id));
                 setState(() {
-                  str = menu!.items.length.toString();
+                  // str = menu!.items.length.toString();
                   str = products[0].description!;
                   str = cart.checkoutUrl;
                 });

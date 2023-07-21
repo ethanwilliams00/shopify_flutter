@@ -50,7 +50,6 @@ class ShopifyStore with ShopifyError {
       'handle': handle,
     });
     final QueryResult result = await _graphQLClient!.query(_options);
-    print(result.data);
     checkForError(result);
     menu = Menu.fromGraphJson(result.data!['menu']);
     return menu;
@@ -239,19 +238,18 @@ class ShopifyStore with ShopifyError {
 
   /// Returns a collection by id.
   Future<Collection?> getCollectionById(String collectionId) async {
-    // try {
-    final WatchQueryOptions _options =
-        WatchQueryOptions(document: gql(getCollectionByIdQuery), variables: {
-      'id': collectionId,
-    });
-    final QueryResult result = await _graphQLClient!.query(_options);
-    checkForError(result);
-    print(result.data);
-    return Collection.fromGraphJson(result.data!['collection']);
-    // } catch (e) {
-    //   log(e.toString());
-    // }
-    // return null;
+    try {
+      final WatchQueryOptions _options =
+          WatchQueryOptions(document: gql(getCollectionByIdQuery), variables: {
+        'id': collectionId,
+      });
+      final QueryResult result = await _graphQLClient!.query(_options);
+      checkForError(result);
+      return Collection.fromGraphJson(result.data!['collection']);
+    } catch (e) {
+      log(e.toString());
+    }
+    return null;
   }
 
   /// Returns all available collections.

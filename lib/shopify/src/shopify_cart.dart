@@ -22,7 +22,6 @@ class ShopifyCart with ShopifyError {
     final WatchQueryOptions watchQueryOptions = WatchQueryOptions(
         document: gql(getCartQuery), variables: {'id': cartId});
     QueryResult result = await _graphQLClient!.query(watchQueryOptions);
-    print(result.data!['cart']['lines']);
     checkForError(result);
     return Cart.fromGraphJson(result.data!['cart']);
   }
@@ -68,7 +67,6 @@ class ShopifyCart with ShopifyError {
       }
     });
     final QueryResult result = await _graphQLClient!.mutate(mutationOptions);
-    print(result.data);
     checkForError(result);
     return Cart.fromGraphJson(result.data!['cartCreate']['cart']);
   }
@@ -88,7 +86,6 @@ class ShopifyCart with ShopifyError {
       ]
     });
     final QueryResult result = await _graphQLClient!.mutate(mutationOptions);
-    print(result.data);
     checkForError(result);
     return Cart.fromGraphJson(result.data!['cartLinesAdd']['cart']);
   }
@@ -103,7 +100,6 @@ class ShopifyCart with ShopifyError {
       "lineIds": [line.id]
     });
     final QueryResult result = await _graphQLClient!.mutate(mutationOptions);
-    print(result.data);
     checkForError(result);
     return Cart.fromGraphJson(result.data!['cartLinesRemove']['cart']);
   }
@@ -121,7 +117,6 @@ class ShopifyCart with ShopifyError {
       }
     });
     final QueryResult result = await _graphQLClient!.mutate(mutationOptions);
-    print(result.data);
     checkForError(result);
     return Cart.fromGraphJson(result.data!['cartLinesUpdate']['cart']);
   }
