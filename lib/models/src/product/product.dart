@@ -92,7 +92,7 @@ class Product with _$Product {
         handle: (json['node'] ?? const {})['handle'] ?? '',
         onlineStoreUrl: (json['node'] ?? const {})['onlineStoreUrl'] ?? '',
         productType: (json['node'] ?? const {})['productType'] ?? '',
-        publishedAt: (json['node'] ?? const {})['publishedAt'],
+        publishedAt: (json['node'] ?? const {})['publishedAt'] ?? '',
         tags: _getTags(json),
         updatedAt: (json['node'] ?? const {})['updatedAt'] ?? '',
         images: _getImageList((json['node'] ?? const {})['images'] ?? const {}),
