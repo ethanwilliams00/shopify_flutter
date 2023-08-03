@@ -107,8 +107,11 @@ class Product with _$Product {
       _$ProductFromJson(json);
 
   static List<ProductVariant> _getProductVariants(Map<String, dynamic> json) {
-    return (((json['node'] ?? const {})['variants'] ?? const {})['edges']
-            as List)
+    return (((json['node'] ??
+                const {
+                  'variants': {'edges': []}
+                })['variants'] ??
+            const {})['edges'] as List)
         .map((v) => ProductVariant.fromGraphJson(v ?? const {}))
         .toList();
   }
