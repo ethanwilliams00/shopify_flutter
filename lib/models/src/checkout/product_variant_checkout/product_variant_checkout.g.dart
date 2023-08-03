@@ -15,6 +15,9 @@ _$_ProductVariantCheckout _$$_ProductVariantCheckoutFromJson(
       sku: json['sku'] as String,
       requiresShipping: json['requiresShipping'] as bool,
       id: json['id'] as String,
+      product: json['product'] == null
+          ? null
+          : Product.fromJson(json['product'] as Map<String, dynamic>),
       image: json['image'] == null
           ? null
           : ShopifyImage.fromJson(json['image'] as Map<String, dynamic>),
@@ -35,6 +38,7 @@ Map<String, dynamic> _$$_ProductVariantCheckoutToJson(
       'sku': instance.sku,
       'requiresShipping': instance.requiresShipping,
       'id': instance.id,
+      'product': instance.product,
       'image': instance.image,
       'compareAtPrice': instance.compareAtPrice,
       'weight': instance.weight,
